@@ -14,22 +14,22 @@
     {
       @foreach (var join in rating.JoinRR)
       {
-        @* <li>@Html.ActionLink($"{rating.LucyStar}", "Details", new { id = rating.RatingId })</li> *@
-        <li>@Html.ActionLink($"{join.Recipe.Title}", "Details", new { id = join.RecipeId })</li>
+        <li>@Html.ActionLink($"{join.Recipe.Title}", "Details", new { id = join.RatingId })</li>
       }
+
       <!-- // ONE Item
-                   // .Include(item => item.JoinEntities)
-                      .ThenInclude()
-                      .FirstOrDefault(matching some ids) // ONE instnace of an item
+                      // .Include(item => item.JoinEntities)
+                        .ThenInclude()
+                        .FirstOrDefault(matching some ids) // ONE instnace of an item
 
-                      Item.JoinEntities = enumerable
+                        Item.JoinEntities = enumerable
 
-                      For EVERY Rating, there is an enumerable JoinEntity (JoinRR)
+                        For EVERY Rating, there is an enumerable JoinEntity (JoinRR)
 
-                      Loop through our list of all Ratings (IEnumerable<RecipeBox.Models.Rating>)
-                      For each Rating in that, we need to loop through our JoinRR <- every rating
+                        Loop through our list of all Ratings (IEnumerable<RecipeBox.Models.Rating>)
+                        For each Rating in that, we need to loop through our JoinRR <- every rating
 
-                        -->
+                          -->
     }
   </ul>
 }

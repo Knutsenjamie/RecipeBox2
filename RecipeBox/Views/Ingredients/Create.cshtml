@@ -12,7 +12,9 @@
   @Html.TextBoxFor(model => model.Name, new {@class = "form-control", type="text", required="text"})
 
   @Html.Label("Select recipe")
-  @Html.DropDownList("RecipeId")
+  @Html.RadioButton("Name", "val", false)
+  <input checked="checked" id="RadioButton1" name="RadioButton1" , type="radio" value=$"{model.IngredientId}" />
+  @* @Html.RadioButton("class property of the model", "value you want of the class property") *@
 
   <input type="submit" value="Add new ingredient" class="btn btn-primary" />
 }

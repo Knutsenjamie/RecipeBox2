@@ -1,4 +1,6 @@
-@{ Layout = "_Layout"; }
+@{
+  Layout = "_Layout"; 
+}
 
 @model RecipeBox.Models.Recipe
 
@@ -10,25 +12,26 @@
 
 @if (@Model.JoinIR.Count == 0)
 {
-  <p>This recipe isn't associated with any ingredient categories.</p>
+  <p>This recipe isn`t associated with any ingredient.</p>
 }
 else
 {
   <h3>This recipe is connected with these ingredients:</h3>
   <ul>
   @foreach (var join in Model.JoinIR)
-  {
-    <li>@join.Ingredient.Name</li>
-    @using (Html.BeginForm("DeleteIngredient", "Recipes"))
     {
-      @Html.Hidden("joinId", @join.IngredientRecipeId)
-      <input type="submit" value="Delete" />
+      <li>@join.Ingredient.Name</li>
+      @using (Html.BeginForm("DeleteIngredient", "Recipes"))
+      {
+        @Html.Hidden("joinId", @join.IngredientRecipeId)
+        <input type="submit" value="Delete" />
+      }
     }
-  }
   </ul>
 }
-@* <p>@Html.ActionLink("Add an ingredient to this recipe", "AddIngredient", "Recipes", new { id = Model.JoinIR.IngredientId })</p> *@
-<p>@Html.ActionLink("Add an ingredient category", "AddIngredient", new { id = Model.RecipeId })</p>
+@* <p>@Html.ActionLink("Add an ingredient to this recipe", "AddIngredient", "Recipes", new { id =
+  Model.JoinIR.IngredientId })</p> *@
+<p>@Html.ActionLink("Add an ingredient", "AddIngredient", new { id = Model.RecipeId })</p>
 <p>@Html.ActionLink("Back to recipes", "Index")</p>
 <p>@Html.ActionLink("Edit recipe", "Edit", new { id = Model.RecipeId })</p>
 <p>@Html.ActionLink("Delete recipe", "Delete", new { id = Model.RecipeId })</p>

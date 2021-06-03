@@ -21,12 +21,21 @@ namespace RecipeBox.Controllers
       _userManager = userManager;
       _db = db;
     }
+
+    [AllowAnonymous]
     public async Task<ActionResult> Index()
     {
       var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userRatings = _db.Ratings.Where(entry => entry.User.Id == currentUser.Id).ToList();
-      return View(userRatings);
+      if (userId != null) {
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        var userRatings = _db.Ratings.Where(entry => entry.User.Id == currentUser.Id).ToList();
+        return View(userRatings);
+      }
+      else {
+        var allRatings = _db.Ratings.ToList();
+        return View(allRatings);
+      }
+
     }
     public async Task<ActionResult> Create()
     {
@@ -53,6 +62,7 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisRating = _db.Ratings

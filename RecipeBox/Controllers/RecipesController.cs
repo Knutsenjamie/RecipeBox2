@@ -9,7 +9,6 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
-
 namespace RecipeBox.Controllers
 {
   [Authorize]
@@ -27,12 +26,14 @@ namespace RecipeBox.Controllers
     [AllowAnonymous]
     public async Task<ActionResult> Index()
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
-      var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).ToList();
       var allRecipes = _db.Recipes;
-      return View(userRecipes);
-      // else { return View(); }
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      if (userId != null) {
+        var currentUser = await _userManager.FindByIdAsync(userId);
+        var userRecipes = _db.Recipes.Where(entry => entry.User.Id == currentUser.Id).ToList();
+        return View(userRecipes);
+      }
+      else { return View(allRecipes); }
     }
 
     public ActionResult Create()
@@ -95,6 +96,7 @@ namespace RecipeBox.Controllers
       return RedirectToAction("Index");
     }
 
+    [AllowAnonymous]
     public ActionResult Details(int id)
     {
       var thisRecipe = _db.Recipes
@@ -138,6 +140,7 @@ namespace RecipeBox.Controllers
     public ActionResult AddIngredient(int id)
     {
       var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      // ViewBag.IngredientId = _db.Ingredients.Name.ToList();
       ViewBag.IngredientId = new SelectList(_db.Ingredients, "IngredientId", "Name");
       return View(thisRecipe);
     }

@@ -1,5 +1,6 @@
 @{
-  Layout = "_Layout"; }
+  Layout = "_Layout";
+}
 
 @using RecipeBox.Models
 @model IEnumerable<RecipeBox.Models.Recipe>
@@ -9,7 +10,7 @@
 @if (Model.Any())
 {
   <ul>
-    @foreach (Recipe recipe in Model)
+  @foreach (Recipe recipe in Model)
     {
       <li>@Html.ActionLink($"{recipe.Title}", "Details", new { id = recipe.RecipeId })</li>
     }

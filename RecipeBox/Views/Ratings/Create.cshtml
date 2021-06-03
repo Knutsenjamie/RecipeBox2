@@ -9,7 +9,8 @@
 @using (Html.BeginForm())
 {
   <p>Rate your favorite recipe here: @Html.DropDownList("RecipeId")</p>
-  <p>Rate recipe from 1-5, 5 being your favorite: @Html.TextBoxFor(model => model.LucyStar, new { @type = "number", @max = "5", @min = "1" })</p>
+  <p>Rate recipe from 1-5, 5 being your favorite: @Html.TextBoxFor(model => model.LucyStar, new { @type = "number", @max =
+  "5", @min = "1", @step = "0.5" })</p>
   <input type="submit" value="rate now!" class="btn btn-default" />
 }
 
