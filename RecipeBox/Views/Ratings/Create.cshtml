@@ -1,0 +1,16 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Rating
+
+<h4>Add a new rating</h4>
+
+@using (Html.BeginForm())
+{
+  <p>Rate your favorite recipe here: @Html.DropDownList("RecipeId")</p>
+  <p>Rate recipe from 1-5, 5 being your favorite: @Html.TextBoxFor(model => model.LucyStar, new { @type = "number", @max = "5", @min = "1" })</p>
+  <input type="submit" value="rate now!" class="btn btn-default" />
+}
+
+<p>@Html.ActionLink("Show all ratings", "Index")</p>

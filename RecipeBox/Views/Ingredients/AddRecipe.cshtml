@@ -1,0 +1,20 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Ingredient
+
+<h2>Add a recipe</h2>
+
+<h4>Add a Recipe that will use this ingredient: @Html.DisplayFor(model => model.Name)</h4>
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.IngredientId)
+
+  @Html.Label("Select Recipe")
+  @Html.RadioButton("RadioButton1", "val", false)
+
+  <input checked="Checked" id="Radiobutton1" name= "Radiobutton1" type="radio" value="val" />
+}
+
+<p>@Html.ActionLink("Back to list", "Index")</p>

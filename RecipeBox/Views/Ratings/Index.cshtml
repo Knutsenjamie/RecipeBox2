@@ -1,0 +1,43 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBox.Models;
+@model IEnumerable<RecipeBox.Models.Rating>
+
+<h1>Ratings for @User.Identity.Name</h1>
+
+@if (Model.Any())
+{
+  <ul>
+  @foreach (Rating rating in Model)
+    {
+      @foreach (var join in rating.JoinRR)
+      {
+        @* <li>@Html.ActionLink($"{rating.LucyStar}", "Details", new { id = rating.RatingId })</li> *@
+        <li>@Html.ActionLink($"{join.Recipe.Title}", "Details", new { id = join.RecipeId })</li>
+      }
+      <!-- // ONE Item
+                   // .Include(item => item.JoinEntities)
+                      .ThenInclude()
+                      .FirstOrDefault(matching some ids) // ONE instnace of an item
+
+                      Item.JoinEntities = enumerable
+
+                      For EVERY Rating, there is an enumerable JoinEntity (JoinRR)
+
+                      Loop through our list of all Ratings (IEnumerable<RecipeBox.Models.Rating>)
+                      For each Rating in that, we need to loop through our JoinRR <- every rating
+
+                        -->
+    }
+  </ul>
+}
+else
+{
+  <h3>No ratings have been added yet!</h3>
+}
+
+<p>@Html.ActionLink("Add new rating", "Create")</p>
+
+<p>@Html.ActionLink("Home", "Index", "Home")</p>

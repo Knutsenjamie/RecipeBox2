@@ -1,0 +1,23 @@
+@{
+  Layout = "_Layout";
+}
+@model RecipeBox.Models.Rating
+
+<h2>Recipe Ratings</h2>
+<hr/>
+
+<h3></h3>
+@if(@Model.JoinRR.Count == 0)
+{
+  <p>There are no ratings yet.</p>
+}
+else
+{
+  <ul>
+  @foreach(var join in Model.JoinRR)
+  {
+ //we need to define current recipe???
+    <li>@join.Recipe.Title | Rating: @Html.DisplayFor(model => model.LucyStar)</li>
+  }
+  </ul>
+}

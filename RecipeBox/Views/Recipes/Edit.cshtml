@@ -1,0 +1,34 @@
+@{ Layout = "_Layout"; }
+
+@model RecipeBox.Models.Recipe
+
+<h3>Edit</h3>
+
+<h4>Edit @Html.DisplayFor(model => model.Title)</h4>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(model => model.RecipeId)
+
+  @Html.LabelFor(model => model.Title)
+  @Html.EditorFor(model => model.Title)
+
+  @Html.LabelFor(model => model.Instructions)
+  @Html.EditorFor(model => model.Instructions)
+
+  @Html.LabelFor(model => model.Style)
+  @Html.EditorFor(model => model.Style)
+
+  @Html.LabelFor(model => model.Course)
+  @Html.EditorFor(model => model.Course)
+
+  @Html.LabelFor(model => model.PrepDate)
+  @Html.EditorFor(model => model.PrepDate, new { @type = "date"})
+
+  @Html.LabelFor(model => model.PrepTime)
+  @Html.EditorFor(model => model.PrepTime, new { @type = "number"})
+
+  <input type="submit" value="Update recipe" />
+}
+
+<p>@Html.ActionLink("Back to recipes", "Index")

@@ -1,0 +1,26 @@
+@{
+  Layout = "_Layout";
+}
+
+@using RecipeBox.Models;
+
+<h1>Welcome to the Recipe Box!</h1>
+
+<p>@Html.ActionLink("See all recipes", "Index", "Recipes")</p>
+<p>@Html.ActionLink("See all ratings", "Index", "Ratings")</p>
+<p>@Html.ActionLink("See all ingredient categories", "Index", "Ingredients")</p>
+<p>@Html.ActionLink("Register here", "Register", "Account")</p>
+<p>@Html.ActionLink("Log in", "Login", "Account")</p>
+
+@* @if (@Model.Count == 0)
+  {
+  <h3>No recipes have been added yet!</h3>
+  }
+
+  <ul>
+  @foreach (Recipe recipe in Model)
+  {
+  <li>@Html.ActionLink($"{recipe.Title}", "Details", new { id = recipe.RecipeId })</li>
+  }
+  </ul>
+} *@
